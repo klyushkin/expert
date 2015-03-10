@@ -7,6 +7,7 @@ package ru.spbstu.telematics.expert.lab2;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import sun.org.mozilla.javascript.Token;
 
 /**
@@ -17,6 +18,7 @@ public class Field {
 
     static public ArrayList<Integer> end = new ArrayList<>();
     boolean fl = false;
+    ArrayList<ArrayList<Integer>> path = new ArrayList<>();
 
     public Field(ArrayList<Integer> startField) {
         //path.get(0).add(startField);
@@ -274,23 +276,26 @@ public class Field {
 
     public void findResult(ArrayList<Integer> tmp) {
         if (check(tmp)) {
-
+            System.out.println(path);
             return;
 
         }
         if (fl == false) {
-            ArrayList<ArrayList<Integer>> path = new ArrayList<>();
             System.out.println("Проверяем состояние " + tmp);
 
             ArrayList<ArrayList<Integer>> start = new ArrayList<>(minSumReturn(checkState(tmp)));
             for (int i = 0; i < start.size(); i++) {
+//                if (path.size() > 20) {
+//                    break;
+//                }
                 if (fl == false) {
                     System.out.println("Добавляем в путь " + start.get(i));
                     path.add(start.get(i));
                     System.out.println("Запускаем рекурсию для " + start.get(i));
                     findResult(start.get(i));
+                } else {
+                    break;
                 }
-                else break;
             }
         }
     }
@@ -300,19 +305,18 @@ public class Field {
 
         ArrayList<Integer> al = new ArrayList<>();
 
-        al.add(1);
+        al.add(8);
         al.add(0);
         al.add(3);
-        al.add(8);
-        al.add(2);
-        al.add(4);
         al.add(7);
+        al.add(1);
+        al.add(4);
         al.add(6);
+        al.add(2);
         al.add(5);
         Field obj = new Field(al);
         System.out.println("Исходник " + al);
         obj.findResult(al);
-        System.out.println("Конец");
 
     }
 }
