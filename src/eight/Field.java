@@ -332,7 +332,7 @@ public class Field {
 
     public void findResult(ArrayList<Integer> tmp) {
        //test
-
+        System.out.println("Test");
     }
 
     public static void main(String[] args) {
