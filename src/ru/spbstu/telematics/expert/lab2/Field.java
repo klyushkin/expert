@@ -331,7 +331,7 @@ public class Field {
     }
 
     public void findResult(ArrayList<Integer> tmp) {
-     
+     //123
     }
 
     public static void main(String[] args) {
