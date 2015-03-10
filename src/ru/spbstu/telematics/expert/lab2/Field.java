@@ -7,22 +7,16 @@ package ru.spbstu.telematics.expert.lab2;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import sun.org.mozilla.javascript.Token;
 
 /**
  *
  * @author alexandr
  */
 public class Field {
-    /*
-     123
-     804
-     765
-    
-     tmp=[1,2,3,8,0,4,7,6,5]
-     */
 
-    public ArrayList<ArrayList<ArrayList<Integer>>> path = new ArrayList<>();
     static public ArrayList<Integer> end = new ArrayList<>();
+    boolean fl = false;
 
     public Field(ArrayList<Integer> startField) {
         //path.get(0).add(startField);
@@ -38,13 +32,6 @@ public class Field {
     }
 
     static private ArrayList<ArrayList<Integer>> fisrtState(ArrayList<Integer> field) {
-        /*
-         023
-         456
-         781
-        
-         tmp = [0,2,3,4,5,6,7,8,1]
-         */
         ArrayList<Integer> tmp = new ArrayList<>(field);
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
@@ -53,18 +40,11 @@ public class Field {
         tmp = new ArrayList<>(field);
         Collections.swap(tmp, 0, 4);
         result.add(tmp);
-//        System.out.println("State 1 " + result);
         return result;
 
     }
 
     static private ArrayList<ArrayList<Integer>> secondState(ArrayList<Integer> field) {
-        /*
-         203
-         456
-         781
-        
-         */
         ArrayList<Integer> tmp = new ArrayList<>(field);
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
@@ -76,18 +56,12 @@ public class Field {
         tmp = new ArrayList<>(field);
         Collections.swap(tmp, 1, 4);
         result.add(tmp);
-//        System.out.println("State 2 " + result);
+        System.out.println("State 2 " + result);
         return result;
 
     }
 
     static private ArrayList<ArrayList<Integer>> thirdState(ArrayList<Integer> field) {
-        /*
-         320
-         456
-         781
-       
-         */
         ArrayList<Integer> tmp = new ArrayList<>(field);
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
@@ -96,18 +70,12 @@ public class Field {
         tmp = new ArrayList<>(field);
         Collections.swap(tmp, 2, 5);
         result.add(tmp);
-//        System.out.println("State 3 " + result);
+        System.out.println("State 3 " + result);
         return result;
 
     }
 
     static private ArrayList<ArrayList<Integer>> fourthState(ArrayList<Integer> field) {
-        /*
-         423
-         056
-         781
-        
-         */
         ArrayList<Integer> tmp = new ArrayList<>(field);
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
@@ -119,18 +87,12 @@ public class Field {
         tmp = new ArrayList<>(field);
         Collections.swap(tmp, 3, 6);
         result.add(tmp);
-//        System.out.println("State 4 " + result);
+        System.out.println("State 4 " + result);
         return result;
 
     }
 
     static private ArrayList<ArrayList<Integer>> fifthState(ArrayList<Integer> field) {
-        /*
-         423
-         506
-         781
-         //field=[1,2,3,8,0,4,7,6,5]
-         */
         ArrayList<Integer> tmp = new ArrayList<>(field);
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
@@ -145,18 +107,12 @@ public class Field {
         tmp = new ArrayList<>(field);
         Collections.swap(tmp, 4, 7);
         result.add(tmp);
-//        System.out.println("State 5 " + result);
+        System.out.println("State 5 " + result);
         return result;
 
     }
 
     static private ArrayList<ArrayList<Integer>> sixthState(ArrayList<Integer> field) {
-        /*
-         423
-         560
-         781
-        
-         */
         ArrayList<Integer> tmp = new ArrayList<>(field);
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
@@ -168,18 +124,12 @@ public class Field {
         tmp = new ArrayList<>(field);
         Collections.swap(tmp, 5, 8);
         result.add(tmp);
-//        System.out.println("State 6 " + result);
+        System.out.println("State 6 " + result);
         return result;
 
     }
 
     static private ArrayList<ArrayList<Integer>> seventhState(ArrayList<Integer> field) {
-        /*
-         423
-         567
-         081
-        
-         */
         ArrayList<Integer> tmp = new ArrayList<>(field);
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
@@ -188,18 +138,12 @@ public class Field {
         tmp = new ArrayList<>(field);
         Collections.swap(tmp, 6, 3);
         result.add(tmp);
-//        System.out.println("State 7 " + result);
+        System.out.println("State 7 " + result);
         return result;
 
     }
 
     static private ArrayList<ArrayList<Integer>> eighthState(ArrayList<Integer> field) {
-        /*
-         423
-         567
-         801
-        
-         */
         ArrayList<Integer> tmp = new ArrayList<>(field);
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
@@ -211,18 +155,12 @@ public class Field {
         tmp = new ArrayList<>(field);
         Collections.swap(tmp, 7, 4);
         result.add(tmp);
-//        System.out.println("State 8 " + result);
+        System.out.println("State 8 " + result);
         return result;
 
     }
 
     static private ArrayList<ArrayList<Integer>> ninthState(ArrayList<Integer> field) {
-        /*
-         423
-         567
-         810
-        
-         */
         ArrayList<Integer> tmp = new ArrayList<>(field);
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
@@ -231,7 +169,7 @@ public class Field {
         tmp = new ArrayList<>(field);
         Collections.swap(tmp, 8, 5);
         result.add(tmp);
-//        System.out.println("State 9 " + result);
+        System.out.println("State 9 " + result);
         return result;
 
     }
@@ -239,63 +177,57 @@ public class Field {
     static private ArrayList<ArrayList<Integer>> checkState(ArrayList<Integer> tmp) {
         int state = 10;
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
-        if (!tmp.equals(end)) {
-
-            for (int i = 0; i < tmp.size(); i++) {
-                if (tmp.get(i) == 0) {
-                    state = i;
-                    break;
-                }
+        for (int i = 0; i < tmp.size(); i++) {
+            if (tmp.get(i) == 0) {
+                state = i;
+                break;
             }
-
-            switch (state) {
-                case 0: {
-                    result = new ArrayList<>(fisrtState(tmp));
-                    break;
-                }
-                case 1: {
-                    result = new ArrayList<>(secondState(tmp));
-                    break;
-                }
-                case 2: {
-                    result = new ArrayList<>(thirdState(tmp));
-                    break;
-                }
-                case 3: {
-                    result = new ArrayList<>(fourthState(tmp));
-                    break;
-                }
-                case 4: {
-                    result = new ArrayList<>(fifthState(tmp));
-                    break;
-                }
-                case 5: {
-                    result = new ArrayList<>(sixthState(tmp));
-                    break;
-                }
-                case 6: {
-                    result = new ArrayList<>(seventhState(tmp));
-                    break;
-                }
-                case 7: {
-                    result = new ArrayList<>(eighthState(tmp));
-                    break;
-                }
-                case 8: {
-                    result = new ArrayList<>(ninthState(tmp));
-                    break;
-                }
-                case 10: {
-                    System.out.println("Error");
-                    break;
-                }
-                default: {
-                    System.out.println("Error");
-                    break;
-                }
+        }
+        switch (state) {
+            case 0: {
+                result = new ArrayList<>(fisrtState(tmp));
+                break;
             }
-        } else {
-            //  System.out.println("Решение найдено");
+            case 1: {
+                result = new ArrayList<>(secondState(tmp));
+                break;
+            }
+            case 2: {
+                result = new ArrayList<>(thirdState(tmp));
+                break;
+            }
+            case 3: {
+                result = new ArrayList<>(fourthState(tmp));
+                break;
+            }
+            case 4: {
+                result = new ArrayList<>(fifthState(tmp));
+                break;
+            }
+            case 5: {
+                result = new ArrayList<>(sixthState(tmp));
+                break;
+            }
+            case 6: {
+                result = new ArrayList<>(seventhState(tmp));
+                break;
+            }
+            case 7: {
+                result = new ArrayList<>(eighthState(tmp));
+                break;
+            }
+            case 8: {
+                result = new ArrayList<>(ninthState(tmp));
+                break;
+            }
+            case 10: {
+                System.out.println("Error");
+                break;
+            }
+            default: {
+                System.out.println("Error");
+                break;
+            }
         }
         return result;
     }
@@ -323,15 +255,44 @@ public class Field {
                 }
             }
         }
-//        for (int i = 0; i < result.size(); i++) {
-//            System.out.println(result.get(i) + " " + sum(result.get(i)));
-//        }
+        for (int i = 0; i < result.size(); i++) {
+            System.out.println(result.get(i) + " " + sum(result.get(i)));
+        }
         return result;
 
     }
 
+    private boolean check(ArrayList<Integer> tmp) {
+
+        if (tmp.equals(end)) {
+            fl = true;
+            System.out.println("Решение найдено");
+            return true;
+        }
+        return false;
+    }
+
     public void findResult(ArrayList<Integer> tmp) {
-     //123
+        if (check(tmp)) {
+
+            return;
+
+        }
+        if (fl == false) {
+            ArrayList<ArrayList<Integer>> path = new ArrayList<>();
+            System.out.println("Проверяем состояние " + tmp);
+
+            ArrayList<ArrayList<Integer>> start = new ArrayList<>(minSumReturn(checkState(tmp)));
+            for (int i = 0; i < start.size(); i++) {
+                if (fl == false) {
+                    System.out.println("Добавляем в путь " + start.get(i));
+                    path.add(start.get(i));
+                    System.out.println("Запускаем рекурсию для " + start.get(i));
+                    findResult(start.get(i));
+                }
+                else break;
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -339,19 +300,19 @@ public class Field {
 
         ArrayList<Integer> al = new ArrayList<>();
 
-        //field=[1,2,3,8,0,4,7,6,5]
         al.add(1);
         al.add(0);
         al.add(3);
         al.add(8);
         al.add(2);
-        al.add(5);
+        al.add(4);
         al.add(7);
         al.add(6);
-        al.add(4);
+        al.add(5);
         Field obj = new Field(al);
         System.out.println("Исходник " + al);
         obj.findResult(al);
+        System.out.println("Конец");
 
     }
 }
