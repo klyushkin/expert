@@ -7,8 +7,6 @@ package ru.spbstu.telematics.expert.lab2;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
-import sun.org.mozilla.javascript.Token;
 
 /**
  *
